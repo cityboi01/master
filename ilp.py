@@ -7,11 +7,11 @@ with open('instances.txt', 'r') as f:
         
 
 
-A,b,c = methods.importLP('simplicity.lp')
+#A,b,c = methods.importLP('simplicity.lp')
 
 
 #main
-#A,b,c = methods.getInstance(input_data,0)
+A,b,c = methods.getInstance(input_data,0)
 
 
 isMaximization = True

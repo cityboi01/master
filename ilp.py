@@ -13,16 +13,18 @@ with open('Data\instances.txt', 'r') as f:
 #main
 A,b,c = methods.getInstance(input_data,0)
 
-
+kMax = 1
 isMaximization = True
 
 if(isMaximization):
    c = -1 * c
 
+#c = methods.repeat_elements(c, kMax)
+
 #lambda, the penalty multiplier, is p
 p=0.01
 
-kMax = 1
+
 
 Qdict = methods.Qdict(A=A, b=b, c=c, kMax = kMax, p=p)
 

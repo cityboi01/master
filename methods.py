@@ -78,6 +78,19 @@ def Qdict(A,b,c,kMax,p):
     #converts the Q Qubo matrix into a dict of form (u,v): value as required by neal.SimulatedAnnealingSampler() docs.
     return dict(np.ndenumerate(Q))
 
+def repeat_elements(arr, k):
+    # Create a new list with k times the length of the input list
+    new_arr = [None] * (len(arr) * k)
+
+    # Iterate over the input list and copy each element k times into the new list
+    for i in range(len(arr)):
+        for j in range(k):
+            new_arr[k*i+j] = arr[i]
+
+    # Return the new list
+    return new_arr
+
+
 #a cplex lp object has a constraint matrix variable where each row is of type cplex._internal_matrices.SparsePair (spair)
 #this function takes such an matrix A as inpyt and transforms into a dict
 def spairMatToDict(A):

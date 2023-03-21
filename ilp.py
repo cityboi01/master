@@ -2,7 +2,7 @@ import methods as methods
 import numpy as np
 
 #open the text file and read the values
-with open('instances.txt', 'r') as f:
+with open('Data\instances.txt', 'r') as f:
         input_data = [list(map(int, line.split(','))) for line in f if line!='\n']
         
 

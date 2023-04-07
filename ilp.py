@@ -4,13 +4,13 @@ import methods as methods
 with open('Data\instances.txt', 'r') as f:
         input_data = [list(map(int, line.split(','))) for line in f if line!='\n']
         
-
-# gets matrix components matrices A,b,c from a .lp CPLEX file
-#A,b,c = methods.importLP('simplicity.lp')
-
-
-#gets matrix component matrices A,b,c for a Knapsack instance
-A,b,c = methods.getInstance(input_data,0)
+use_lpFile = False
+if(use_lpFile):
+    # gets matrix components matrices A,b,c from a .lp CPLEX file
+    A,b,c = methods.importLP('simplicity.lp')
+else:
+    #gets matrix component matrices A,b,c for a Knapsack instance
+    A,b,c = methods.getInstance(input_data,0)
 
 #number of qubits per variable
 kMax = 1

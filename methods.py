@@ -19,6 +19,7 @@ def importLP(file):
     
     return A,b,c
 
+#returns a Knapsack instance from input file arr
 def getInstance(arr, index):
     c = np.array(arr[index*4])
     A = np.array(arr[index*4+1:index*4+3])

@@ -5,7 +5,7 @@ with open('Data\instances.txt', 'r') as f:
         input_data = [list(map(int, line.split(','))) for line in f if line!='\n']
         
 
-
+# gets matrix components matrices A,b,c from a .lp CPLEX file
 #A,b,c = methods.importLP('simplicity.lp')
 
 

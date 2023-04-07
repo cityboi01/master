@@ -58,10 +58,8 @@ def Qdict(A,b,c,kMax,p):
 
     #Computes the block matrices in Q
     Qxx = (p * np.transpose(Tx).dot(np.transpose(A).dot(A) + np.diag(np.transpose(A).dot(b) + b.reshape(1,-1).dot(A)))).dot(Tx)
-    diagC = np.diag(c)
-    zeros = np.zeros(((kMax - 1) * n, n))
-    adjDC = np.concatenate((diagC, zeros), axis=0)
-    Qxx += (adjDC.dot(Tx))
+    diag = np.diag(np.transpose(c).dot(Tx))
+    Qxx += diag
 
     Qxs = p * np.transpose(Tx).dot(np.transpose(A)).dot(Ts)
 

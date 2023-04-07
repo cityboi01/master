@@ -12,7 +12,6 @@ def importLP(file):
 
     #Get the left-hand-side constraint coefficient matrix
     A = np.array(lp_file.linear_constraints.get_rows())
-    A = spairMatToCoo(A)
 
     #Get the right-hand-side constraint coefficients
     b = np.array(lp_file.linear_constraints.get_rhs())
@@ -26,7 +25,7 @@ def getInstance(arr, index):
     b = np.array(arr[index*4+3])
     return A, b, c
 
-#number of bits in representation per variable 
+#number of bits need in representation per variable  if i is max value
 def R (i):
     k=1
     while(pow(2,k) < i):
@@ -78,42 +77,3 @@ def Qdict(A,b,c,kMax,p):
     #converts the Q Qubo matrix into a dict of form (u,v): value as required by neal.SimulatedAnnealingSampler() docs.
     return dict(np.ndenumerate(Q))
 
-def repeat_elements(arr, k):
-    # Create a new list with k times the length of the input list
-    new_arr = [None] * (len(arr) * k)
-
-    # Iterate over the input list and copy each element k times into the new list
-    for i in range(len(arr)):
-        for j in range(k):
-            new_arr[k*i+j] = arr[i]
-
-    # Return the new list
-    return new_arr
-
-
-#a cplex lp object has a constraint matrix variable where each row is of type cplex._internal_matrices.SparsePair (spair)
-#this function takes such an matrix A as inpyt and transforms into a dict
-def spairMatToDict(A):
-    dict = {}
-    for indRow, row in enumerate(A):
-        tuple = row.unpack()
-        for (col, val) in (zip(tuple[0], tuple[1])):
-            dict[(indRow, col)] = val
-    return dict
-
-def dictToCoo(d):
-    keys = d.keys()
-    indices = list(zip(*keys))
-    return coo_matrix((list(d.values()), (indices[0], indices[1])))
-
-def spairMatToCoo(A):
-    i=[]
-    j=[]
-    values=[]
-    for  ind,row in enumerate(A):
-        tuple = row.unpack()
-        i.extend([ind] * len(tuple[0]))
-        j.extend(tuple[0])
-        values.extend(tuple[1])
-    return coo_matrix((values, (i, j)))
-    
